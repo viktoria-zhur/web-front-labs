@@ -6,8 +6,8 @@
         <title>Журавлева Виктория Александровна. Лабораторная 5</title>
         <link rel="stylesheet" href="../=main.css">
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
-        <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
+        <link rel="icon" href="favicon-32x32.png">
+        <link rel="icon" href="favicon-16x16.png">
         <script>
             function showSum() {
                 let inputA = document.getElementById('number1');
@@ -42,11 +42,88 @@
                 alert("Произведение чисел " + a + " и " + b + " равно: " + result);
             }
 
+            function showDiv() {
+                let inputA = document.getElementById('number1');
+                let inputB = document.getElementById('number2');
+
+                let a = parseFloat(inputA.value);
+                let b = parseFloat(inputB.value);
+
+                if (isNaN(a) || isNaN(b)) {
+                    alert("Ошибка: одно из полей содержит нечисловые данные");
+                    if (isNaN(a)) {
+                        inputA.style.borderColor = "red";
+                        inputA.focus();
+                        inputA.select();
+                    }
+                    if (isNaN(b)) {
+                        inputB.style.borderColor = "red";
+                        inputB.focus();
+                        inputB.select();
+                    }
+                    return;
+                }
+
+                if (b === 0) {
+                    alert("Ошибка: второе число не может быть равно нулю");
+                    inputB.style.borderColor = "red";
+                    inputB.focus();
+                    inputB.select();
+                    return;
+                }
+
+                let result = a / b;
+                alert("Отношение чисел " + a + " и " + b + " равно: " + result);
+
+                // Сброс выделения
+                inputA.style.borderColor = "";
+                inputB.style.borderColor = "";
+            }
+
+            function showPower() {
+                let inputA = document.getElementById('number1');
+                let inputB = document.getElementById('number2');
+
+                let a = parseFloat(inputA.value);
+                let b = parseFloat(inputB.value);
+
+                if (isNaN(a) || isNaN(b)) {
+                    alert("Ошибка: одно из полей содержит нечисловые данные");
+                    if (isNaN(a)) {
+                        inputA.style.borderColor = "red";
+                        inputA.focus();
+                        inputA.select();
+                    }
+                    if (isNaN(b)) {
+                        inputB.style.borderColor = "red";
+                        inputB.focus();
+                        inputB.select();
+                    }
+                    return;
+                }
+
+                if (a === 0 && b === 0) {
+                    alert("Ошибка: оба числа не могут быть равны нулю");
+                    inputA.style.borderColor = "red";
+                    inputB.style.borderColor = "red";
+                    inputA.focus();
+                    inputA.select();
+                    return;
+                }
+
+                let result = Math.pow(a, b);
+                alert("Число " + a + " в степени " + b + " равно: " + result);
+
+                inputA.style.borderColor = "";
+                inputB.style.borderColor = "";
+            }
+
             function showAuthor() {
                 let author = "Автор страницы:\nВиктория Журавлева";
                 alert(author);
             }
 
+            // Функция для вывода приветственного сообщения
             function showWelcomeMessage() {
                 let message = "Приветствую вас на моей странице!\nМой девиз: Вперёд к знаниям!";
                 alert(message);
@@ -108,6 +185,8 @@
             <button class="message" style="background-color: #1E90FF;" onclick="showSum()">Найти сумму чисел</button>
             <button class="message" style="background-color: #FF6347;" onclick="showDifference()">Найти разность чисел</button>
             <button class="message" style="background-color: #32CD32;" onclick="showProduct()">Найти произведение</button>
+            <button class="message" style="background-color: #FFD700;" onclick="showDiv()">Найти отношение чисел</button>
+            <button class="message" style="background-color: #9370DB;" onclick="showPower()">Возвести в степень</button>
             <button class="message" style="background-color: #00BFFF;" onclick="showAuthor()">Узнать, кто автор страницы</button>
         </main>
         <footer ondblclick="showWelcomeMessage()">
