@@ -16,6 +16,16 @@
                 alert("Сумма чисел " + a + " и " + b + " равна: " + result);
             }
 
+    
+            function showAuthor() {
+                let author = "Автор страницы:\nВиктория Журавлева";
+                alert(author);
+            }
+
+            function showWelcomeMessage() {
+                let message = "Приветствую вас на моей странице!\nМой девиз: Вперёд к знаниям!";
+                alert(message);
+            }
         </script>
         <style>
             body {
@@ -37,17 +47,25 @@
                 cursor: pointer;
                 border-radius: 10px;
             }
+
+            h1 {
+                cursor: pointer; 
+            }
+
+            footer {
+                cursor: pointer; 
+            }
         </style>
     </head>
     <body>
-        <header>
+        <header onclick="showAuthor()">
             <h1 style="background-color: #100144; color: white; padding: 10px;">НГТУ, ФБ, Лабораторная работа 5</h1>
         </header>
         <main>
             <button class="message" style="background-color: #1E90FF;" onclick="showSum()">Сколько будет 5154+7891?</button>
-            <button class="message" style="background-color: #00BFFF;" onclick="alert('Узнать, кто автор страницы')">Узнать, кто автор страницы</button>
+            <button class="message" style="background-color: #00BFFF;" onclick="showAuthor()">Узнать, кто автор страницы</button>
         </main>
-        <footer>
+        <footer ondblclick="showWelcomeMessage()">
             &copy;Виктория Журавлева, ФБИ-34, 2 курс, 2025
         </footer>
     </body>
