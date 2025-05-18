@@ -6,127 +6,17 @@
         <title>Журавлева Виктория Александровна. Лабораторная 5</title>
         <link rel="stylesheet" href="../=main.css">
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
-        <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
+        <link rel="icon" href="favicon-32x32.png">
+        <link rel="icon" href="favicon-16x16.png">
         <script>
-            function showSum() {
-                let inputA = document.getElementById('number1');
-                let inputB = document.getElementById('number2');
-
-                let a = parseInt(inputA.value);
-                let b = parseInt(inputB.value);
-                let result = a + b;
-
-                alert("Сумма чисел " + a + " и " + b + " равна: " + result);
-            }
-
-            function showDifference() {
-                let inputA = document.getElementById('number1');
-                let inputB = document.getElementById('number2');
-
-                let a = parseInt(inputA.value);
-                let b = parseInt(inputB.value);
-                let result = a - b;
-
-                alert("Разность чисел " + a + " и " + b + " равна: " + result);
-            }
-
-            function showProduct() {
-                let inputA = document.getElementById('number1');
-                let inputB = document.getElementById('number2');
-
-                let a = parseInt(inputA.value);
-                let b = parseInt(inputB.value);
-                let result = a * b;
-
-                alert("Произведение чисел " + a + " и " + b + " равно: " + result);
-            }
-
-            function showDiv() {
-                let inputA = document.getElementById('number1');
-                let inputB = document.getElementById('number2');
-
-                let a = parseFloat(inputA.value);
-                let b = parseFloat(inputB.value);
-
-                if (isNaN(a) || isNaN(b)) {
-                    alert("Ошибка: одно из полей содержит нечисловые данные");
-                    if (isNaN(a)) {
-                        inputA.style.borderColor = "red";
-                        inputA.focus();
-                        inputA.select();
-                    }
-                    if (isNaN(b)) {
-                        inputB.style.borderColor = "red";
-                        inputB.focus();
-                        inputB.select();
-                    }
-                    return;
-                }
-
-                if (b === 0) {
-                    alert("Ошибка: второе число не может быть равно нулю");
-                    inputB.style.borderColor = "red";
-                    inputB.focus();
-                    inputB.select();
-                    return;
-                }
-
-                let result = a / b;
-                alert("Отношение чисел " + a + " и " + b + " равно: " + result);
-
-                // Сброс выделения
-                inputA.style.borderColor = "";
-                inputB.style.borderColor = "";
-            }
-
-            function showPower() {
-                let inputA = document.getElementById('number1');
-                let inputB = document.getElementById('number2');
-
-                let a = parseFloat(inputA.value);
-                let b = parseFloat(inputB.value);
-
-                if (isNaN(a) || isNaN(b)) {
-                    alert("Ошибка: одно из полей содержит нечисловые данные");
-                    if (isNaN(a)) {
-                        inputA.style.borderColor = "red";
-                        inputA.focus();
-                        inputA.select();
-                    }
-                    if (isNaN(b)) {
-                        inputB.style.borderColor = "red";
-                        inputB.focus();
-                        inputB.select();
-                    }
-                    return;
-                }
-
-                if (a === 0 && b === 0) {
-                    alert("Ошибка: оба числа не могут быть равны нулю");
-                    inputA.style.borderColor = "red";
-                    inputB.style.borderColor = "red";
-                    inputA.focus();
-                    inputA.select();
-                    return;
-                }
-
-                let result = Math.pow(a, b);
-                alert("Число " + a + " в степени " + b + " равно: " + result);
-
-                inputA.style.borderColor = "";
-                inputB.style.borderColor = "";
-            }
-
-            function showAuthor() {
-                let author = "Автор страницы:\nВиктория Журавлева";
-                alert(author);
-            }
-
-            // Функция для вывода приветственного сообщения
-            function showWelcomeMessage() {
-                let message = "Приветствую вас на моей странице!\nМой девиз: Вперёд к знаниям!";
-                alert(message);
+            function changeOutput(buttonNumber, bgColor, textColor, borderStyle, borderRadius, borderWidth) {
+                let output = document.getElementById('output');
+                output.innerHTML = "Нажата кнопка " + buttonNumber;
+                output.style.backgroundColor = bgColor;
+                output.style.color = textColor;
+                output.style.borderStyle = borderStyle;
+                output.style.borderRadius = borderRadius;
+                output.style.borderWidth = borderWidth;
             }
         </script>
         <style>
@@ -168,6 +58,20 @@
                 padding: 8px;
                 width: 200px;
             }
+
+            #output {
+                width: 200px;
+                height: 100px;
+                background-color: #f5f9fa;
+                border: 2px solid #00008B;
+                margin: 20px auto;
+                text-align: center;
+                line-height: 100px;
+                color: rgb(0, 0, 0);
+                font-weight: bold;
+                font-size: 18px;
+                border-radius: 10px;
+            }
         </style>
     </head>
     <body>
@@ -188,6 +92,13 @@
             <button class="message" style="background-color: #FFD700;" onclick="showDiv()">Найти отношение чисел</button>
             <button class="message" style="background-color: #9370DB;" onclick="showPower()">Возвести в степень</button>
             <button class="message" style="background-color: #00BFFF;" onclick="showAuthor()">Узнать, кто автор страницы</button>
+            <div>
+                <button onclick="changeOutput(1, 'yellow', 'red', 'solid', '10px', '5px')">Кнопка 1</button>
+                <button onclick="changeOutput(2, 'green', 'white', 'dashed', '20px', '10px')">Кнопка 2</button>
+                <button onclick="changeOutput(3, 'blue', 'yellow', 'dotted', '30px', '15px')">Кнопка 3</button>
+                <button onclick="changeOutput(4, 'purple', 'white', 'double', '40px', '20px')">Кнопка 4</button>
+            </div>
+            <div id="output"></div>
         </main>
         <footer ondblclick="showWelcomeMessage()">
             &copy;Виктория Журавлева, ФБИ-34, 2 курс, 2025
