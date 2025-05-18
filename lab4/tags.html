@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Облако тегов</title>
+    <link rel="stylesheet" href="../=main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,45 +21,55 @@
         .tag-cloud {
             position: relative;
             width: 100%;
-            height: 100%;
+            height: 90vh; /* Увеличено пространство для облака тегов */
         }
         .tag {
             position: absolute;
-            color: black;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
         }
         .tag:hover {
-            transform: scale(1.5);
+            transform: scale(1.5) !important;
             z-index: 10;
             text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            color: white;
         }
     </style>
 </head>
 <body>
-    <h1>Облако тегов по теме «CSS. Позиционирование»</h1>
-    <div class="tag-cloud">
-        <span class="tag" style="font-size: 24px; top: 10%; left: 10%; color: #FF5733;">position</span>
-        <span class="tag" style="font-size: 30px; top: 20%; left: 60%; color: #33FF57;">relative</span>
-        <span class="tag" style="font-size: 36px; top: 30%; left: 30%; color: #3357FF;">absolute</span>
-        <span class="tag" style="font-size: 20px; top: 40%; left: 80%; color: #F3FF33;">fixed</span>
-        <span class="tag" style="font-size: 28px; top: 50%; left: 20%; color: #FF33F3;">static</span>
-        <span class="tag" style="font-size: 18px; top: 60%; left: 70%; color: #33FFF3;">sticky</span>
-        <span class="tag" style="font-size: 22px; top: 70%; left: 40%; color: #8A2BE2;">z-index</span>
-        <span class="tag" style="font-size: 26px; top: 15%; left: 75%; color: #FF7F50;">top</span>
-        <span class="tag" style="font-size: 32px; top: 25%; left: 10%; color: #6495ED;">bottom</span>
-        <span class="tag" style="font-size: 16px; top: 35%; left: 85%; color: #DC143C;">left</span>
-        <span class="tag" style="font-size: 34px; top: 45%; left: 50%; color: #00BFFF;">right</span>
-        <span class="tag" style="font-size: 14px; top: 55%; left: 90%; color: #7CFC00;">overflow</span>
-        <span class="tag" style="font-size: 28px; top: 65%; left: 25%; color: #FF69B4;">float</span>
-        <span class="tag" style="font-size: 20px; top: 75%; left: 60%; color: #4B0082;">clear</span>
-        <span class="tag" style="font-size: 16px; top: 85%; left: 35%; color: #FFD700;">display</span>
-        <span class="tag" style="font-size: 38px; top: 50%; left: 50%; color: #FF0000;">margin</span>
-        <span class="tag" style="font-size: 24px; top: 30%; left: 90%; color: #00FF00;">padding</span>
-        <span class="tag" style="font-size: 20px; top: 70%; left: 80%; color: #0000FF;">height</span>
-        <span class="tag" style="font-size: 26px; top: 10%; left: 45%; color: #FFFF00;">width</span>
-        <span class="tag" style="font-size: 18px; top: 40%; left: 15%; color: #FF00FF;">transform</span>
-    </div>
+    <header>
+        <h1>Облако тегов по теме «CSS. Позиционирование»</h1>
+        <a href="index.html">Меню</a>
+    </header>
+    <main>
+        <div class="tag-cloud">
+            <span class="tag" style="font-family: 'Arial'; font-size: 24px; top: 10%; left: 10%; color: #FF5733; transform: rotate(5deg);">position</span>
+            <span class="tag" style="font-family: 'Verdana'; font-size: 30px; top: 20%; left: 60%; color: #33FF57; transform: rotate(-3deg);">relative</span>
+            <span class="tag" style="font-family: 'Times New Roman'; font-size: 36px; top: 30%; left: 30%; color: #3357FF; transform: rotate(2deg);">absolute</span>
+            <span class="tag" style="font-family: 'Courier New'; font-size: 20px; top: 40%; left: 80%; color: #F3FF33; transform: rotate(-4deg);">fixed</span>
+            <span class="tag" style="font-family: 'Georgia'; font-size: 28px; top: 50%; left: 20%; color: #FF33F3; transform: rotate(3deg);">static</span>
+            <span class="tag" style="font-family: 'Palatino'; font-size: 18px; top: 60%; left: 70%; color: #33FFF3; transform: rotate(-2deg);">sticky</span>
+            <span class="tag" style="font-family: 'Garamond'; font-size: 22px; top: 70%; left: 40%; color: #8A2BE2; transform: rotate(1deg);">z-index</span>
+            <span class="tag" style="font-family: 'Bookman'; font-size: 26px; top: 15%; left: 75%; color: #FF7F50; transform: rotate(-1deg);">top</span>
+            <span class="tag" style="font-family: 'Comic Sans MS'; font-size: 32px; top: 25%; left: 10%; color: #6495ED; transform: rotate(4deg);">bottom</span>
+            <span class="tag" style="font-family: 'Trebuchet MS'; font-size: 16px; top: 35%; left: 85%; color: #DC143C; transform: rotate(-5deg);">left</span>
+            <span class="tag" style="font-family: 'Arial Black'; font-size: 34px; top: 45%; left: 50%; color: #00BFFF; transform: rotate(6deg);">right</span>
+            <span class="tag" style="font-family: 'Impact'; font-size: 14px; top: 55%; left: 90%; color: #7CFC00; transform: rotate(-6deg);">overflow</span>
+            <span class="tag" style="font-family: 'Lucida Console'; font-size: 28px; top: 65%; left: 25%; color: #FF69B4; transform: rotate(7deg);">float</span>
+            <span class="tag" style="font-family: 'Tahoma'; font-size: 20px; top: 75%; left: 60%; color: #4B0082; transform: rotate(-7deg);">clear</span>
+            <span class="tag" style="font-family: 'Arial Narrow'; font-size: 16px; top: 85%; left: 35%; color: #FFD700; transform: rotate(8deg);">display</span>
+            <span class="tag" style="font-family: 'Century Gothic'; font-size: 38px; top: 50%; left: 50%; color: #FF0000; transform: rotate(-8deg);">margin</span>
+            <span class="tag" style="font-family: 'Lucida Sans Unicode'; font-size: 24px; top: 30%; left: 90%; color: #00FF00; transform: rotate(9deg);">padding</span>
+            <span class="tag" style="font-family: 'MS Sans Serif'; font-size: 20px; top: 70%; left: 80%; color: #0000FF; transform: rotate(-9deg);">height</span>
+            <span class="tag" style="font-family: 'MS Serif'; font-size: 26px; top: 10%; left: 45%; color: #FFFF00; transform: rotate(10deg);">width</span>
+            <span class="tag" style="font-family: 'Symbol'; font-size: 18px; top: 40%; left: 15%; color: #FF00FF; transform: rotate(-10deg);">transform</span>
+        </div>
+    </main>
+    <footer>
+        &copy;Виктория Журавлева, ФБИ-34, 2 курс, 2025
+    </footer>
 </body>
 </html>
