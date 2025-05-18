@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Панель прогресса</title>
+        <link - rel="stylesheet" - href="../=main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
+        <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
+       
+        <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0526f9;
+        }
+
+        .progress-container {
+            width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background-color: #005eff;
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .progress-button {
+            background-color: #002aff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .progress-button:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .progress-button:active {
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <h2>Степень прогресса</h2>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <button class="progress-button" id="progressButton">Нажмите и удерживайте</button>
+    </div>
+
+    <script>
+        const progressButton = document.getElementById('progressButton');
+        const progressBar = document.getElementById('progressBar');
+        let intervalId;
+        let progress = 0;
+
+        progressButton.addEventListener('mousedown', () => {
+            progressButton.style.boxShadow = 'none';
+            intervalId = setInterval(() => {
+                progress += 1;
+                progressBar.style.width = `${progress}%`;
+
+                if (progress >= 100) {
+                    clearInterval(intervalId);
+                    progress = 0;
+                }
+            }, 50); // Update every 50ms to reach 100% in 5 seconds
+        });
+
+        progressButton.addEventListener('mouseup', () => {
+            progressButton.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+            clearInterval(intervalId);
+        });
+
+        progressButton.addEventListener('mouseleave', () => {
+            progressButton.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+            clearInterval(intervalId);
+        });
+    </script>
+</body>
+</html>

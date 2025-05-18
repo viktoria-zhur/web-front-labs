@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Журавлева Виктория Александровна. Лабораторная 4</title>
+        <link rel="stylesheet" href="../=main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
+        <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
+        <style>
+            img {
+                width: 960px;
+                height: 540px;
+            }
+            .image {
+                width: 960px;
+                height: 540px;
+                display: block;
+                margin: auto;
+                position: relative; 
+            }
+            .image:hover .o1 {
+                opacity: 1;
+                transition: 1s;
+            }
+            .image:hover .o2 {
+                opacity: 1;
+                transition: 1.5s;
+            }
+            .image:hover .o3 {
+                opacity: 1;
+                transition: 2s;
+            }
+            .image:hover .o4 {
+                opacity: 1;
+                transition: 2.5s;
+            }
+
+            .o1, .o2, .o3, .o4 {
+                position: absolute;
+                border-radius: 50%;
+                background-color: white;
+                border: 3px solid black;
+                opacity: 0;
+                box-shadow: 5px 5px 10px;
+            }
+            .o1 {
+                width: 40px;
+                height: 20px;
+                right: 280px; 
+                top: 200px;
+                transition: 1s;
+            }
+            .o2 {
+                width: 60px;
+                height: 30px;
+                right: 240px;
+                top: 160px;
+                transition: 1.5s;
+            }
+            .o3 {
+                width: 80px;
+                height: 40px;
+                right: 200px; 
+                top: 120px;
+                transition: 2s;
+            }
+            .o4 {
+                width: 160px;
+                height: 80px;
+                right: 160px; 
+                top: 50px;
+                text-align: center;
+                line-height: 80px;
+                color: black;
+                font-weight: bold;
+                font-size: 20px;
+                font-family: 'Press Start 2P', cursive;
+                transition: 2.5s;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 4
+        </header>
+        <main>
+            <div class="image">
+                <img src="C:\Users\123\OneDrive\Изображения\web-front-labs\lab4\af63494.jpeg">
+                <div class="o1"></div>
+                <div class="o2"></div>
+                <div class="o3"></div>
+                <div class="o4">Ку-ку!</div>
+            </div>
+        </main>
+        <footer>
+            &copy; Журавлева Виктория, ФБИ-34, 2 курс, 2025
+        </footer>
+    </body>
+</html>
