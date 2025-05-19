@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Фильтры</title>
+        <link rel="stylesheet" href="../=main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
+        <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
+        <style>
+          
+
+            .filter-section {
+                margin: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-section div {
+                margin: 10px;
+            }
+
+            input[type="range"] {
+                width: 300px;
+            }
+
+            #blurImage {
+                max-width: 100%;
+                max-height: 60vh;
+                object-fit: contain;
+                margin-top: 20px;
+            }
+
+            .image-container {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>НГТУ, ФБ, Лабораторная работа 5</h1>
+        </header>
+        <main>
+            <div class="filter-section">
+                <div>
+                    Фильтр blur:
+                    <input type="range" id="blurValue" min="0" max="20" onchange="applyBlur()">
+                    <span id="blurOutput">0px</span>
+                </div>
+                <div class="image-container">
+                    <img src="C:\Users\123\OneDrive\Изображения\web-front-labs\lab5\5a12136s-1920.jpg" id="blurImage">
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>&copy;Виктория Журавлева, ФБИ-34, 2 курс, 2025</p>
+        </footer>
+        <script>
+            function applyBlur() {
+                let blurValue = document.getElementById('blurValue').value;
+                document.getElementById('blurOutput').textContent = blurValue + 'px';
+                document.getElementById('blurImage').style.filter = 'blur(' + blurValue + 'px)';
+            }
+        </script>
+    </body>
+</html>
