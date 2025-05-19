@@ -9,17 +9,26 @@
         <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
         <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
         <style>
-          
-
-            .filter-section {
-                margin: 20px;
+            .filter-container {
                 display: flex;
-                flex-direction: column;
-                align-items: center;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 20px;
             }
 
-            .filter-section div {
-                margin: 10px;
+            .image-container {
+                display: flex;
+                justify-content: center;
+            }
+
+            .controls-container {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .controls-container div {
+                margin: 10px 0;
             }
 
             input[type="range"] {
@@ -30,15 +39,7 @@
                 max-width: 100%;
                 max-height: 60vh;
                 object-fit: contain;
-                margin-top: 20px;
             }
-
-            .image-container {
-                display: flex;
-                justify-content: center;
-                width: 100%;
-            }
-
         </style>
     </head>
     <body>
@@ -46,14 +47,51 @@
             <h1>НГТУ, ФБ, Лабораторная работа 5</h1>
         </header>
         <main>
-            <div class="filter-section">
-                <div>
-                    Фильтр blur:
-                    <input type="range" id="blurValue" min="0" max="20" onchange="applyBlur()">
-                    <span id="blurOutput">0px</span>
-                </div>
+            <div class="filter-container">
                 <div class="image-container">
                     <img src="C:\Users\123\OneDrive\Изображения\web-front-labs\lab5\5a12136s-1920.jpg" id="blurImage">
+                </div>
+                <div class="controls-container">
+                    <div>
+                        Фильтр blur:
+                        <input type="range" id="blurValue" min="0" max="20" onchange="applyBlur()">
+                        <span id="blurOutput">0px</span>
+                    </div>
+                    <div>
+                        Фильтр brightness:
+                        <input type="range" id="brightnessValue" min="0" max="500" value="100" onchange="applyBrightness()">
+                        <span id="brightnessOutput">100%</span>
+                    </div>
+                    <div>
+                        Фильтр contrast:
+                        <input type="range" id="contrastValue" min="0" max="500" value="100" onchange="applyContrast()">
+                        <span id="contrastOutput">100%</span>
+                    </div>
+                    <div>
+                        Фильтр grayscale:
+                        <input type="range" id="grayscaleValue" min="0" max="100" onchange="applyGrayscale()">
+                        <span id="grayscaleOutput">0%</span>
+                    </div>
+                    <div>
+                        Фильтр hue-rotate:
+                        <input type="range" id="hueRotateValue" min="0" max="360" onchange="applyHueRotate()">
+                        <span id="hueRotateOutput">0deg</span>
+                    </div>
+                    <div>
+                        Фильтр invert:
+                        <input type="range" id="invertValue" min="0" max="100" onchange="applyInvert()">
+                        <span id="invertOutput">0%</span>
+                    </div>
+                    <div>
+                        Фильтр saturate:
+                        <input type="range" id="saturateValue" min="0" max="500" value="100" onchange="applySaturate()">
+                        <span id="saturateOutput">100%</span>
+                    </div>
+                    <div>
+                        Фильтр sepia:
+                        <input type="range" id="sepiaValue" min="0" max="100" onchange="applySepia()">
+                        <span id="sepiaOutput">0%</span>
+                    </div>
                 </div>
             </div>
         </main>
@@ -65,6 +103,48 @@
                 let blurValue = document.getElementById('blurValue').value;
                 document.getElementById('blurOutput').textContent = blurValue + 'px';
                 document.getElementById('blurImage').style.filter = 'blur(' + blurValue + 'px)';
+            }
+
+            function applyBrightness() {
+                let brightnessValue = document.getElementById('brightnessValue').value;
+                document.getElementById('brightnessOutput').textContent = brightnessValue + '%';
+                document.getElementById('blurImage').style.filter = 'brightness(' + brightnessValue + '%)';
+            }
+
+            function applyContrast() {
+                let contrastValue = document.getElementById('contrastValue').value;
+                document.getElementById('contrastOutput').textContent = contrastValue + '%';
+                document.getElementById('blurImage').style.filter = 'contrast(' + contrastValue + '%)';
+            }
+
+            function applyGrayscale() {
+                let grayscaleValue = document.getElementById('grayscaleValue').value;
+                document.getElementById('grayscaleOutput').textContent = grayscaleValue + '%';
+                document.getElementById('blurImage').style.filter = 'grayscale(' + grayscaleValue + '%)';
+            }
+
+            function applyHueRotate() {
+                let hueRotateValue = document.getElementById('hueRotateValue').value;
+                document.getElementById('hueRotateOutput').textContent = hueRotateValue + 'deg';
+                document.getElementById('blurImage').style.filter = 'hue-rotate(' + hueRotateValue + 'deg)';
+            }
+
+            function applyInvert() {
+                let invertValue = document.getElementById('invertValue').value;
+                document.getElementById('invertOutput').textContent = invertValue + '%';
+                document.getElementById('blurImage').style.filter = 'invert(' + invertValue + '%)';
+            }
+
+            function applySaturate() {
+                let saturateValue = document.getElementById('saturateValue').value;
+                document.getElementById('saturateOutput').textContent = saturateValue + '%';
+                document.getElementById('blurImage').style.filter = 'saturate(' + saturateValue + '%)';
+            }
+
+            function applySepia() {
+                let sepiaValue = document.getElementById('sepiaValue').value;
+                document.getElementById('sepiaOutput').textContent = sepiaValue + '%';
+                document.getElementById('blurImage').style.filter = 'sepia(' + sepiaValue + '%)';
             }
         </script>
     </body>
