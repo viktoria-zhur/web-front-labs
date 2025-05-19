@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Круги</title>
+        <link rel="stylesheet" href="../=main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
+        <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
+        <style>
+            .circle {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 20px;
+                font-weight: bold;
+                color: white;
+                position: absolute;
+                transition: all 1s ease;
+                cursor: pointer;
+            }
+
+            .circle:nth-child(1) {
+                background-color: #FF5733;
+                left: 50px;
+                top: 100px;
+            }
+
+            .circle:nth-child(2) {
+                background-color: #33FF57;
+                left: 200px;
+                top: 50px;
+            }
+
+            .circle:nth-child(3) {
+                background-color: #3357FF;
+                left: 300px;
+                top: 150px;
+            }
+
+            .circle:nth-child(4) {
+                background-color: #F033FF;
+                left: 150px;
+                top: 200px;
+            }
+
+            .circle:nth-child(5) {
+                background-color: #FF33F0;
+                left: 250px;
+                top: 250px;
+            }
+
+            .circle:nth-child(6) {
+                background-color: #33FFF0;
+                left: 350px;
+                top: 100px;
+            }
+
+            .circle:nth-child(7) {
+                background-color: #FF8C33;
+                left: 100px;
+                top: 300px;
+            }
+
+            .circle:nth-child(8) {
+                background-color: #8C33FF;
+                left: 200px;
+                top: 350px;
+            }
+
+            .circle:nth-child(9) {
+                background-color: #33FF8C;
+                left: 300px;
+                top: 400px;
+            }
+
+            .circle:nth-child(10) {
+                background-color: #FF338C;
+                left: 400px;
+                top: 200px;
+            }
+
+            .circle.hidden {
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Круги</h1>
+        </header>
+        <main>
+            <div class="circle" onclick="hideCircle(this)">1</div>
+            <div class="circle" onclick="hideCircle(this)">2</div>
+            <div class="circle" onclick="hideCircle(this)">3</div>
+            <div class="circle" onclick="hideCircle(this)">4</div>
+            <div class="circle" onclick="hideCircle(this)">5</div>
+            <div class="circle" onclick="hideCircle(this)">6</div>
+            <div class="circle" onclick="hideCircle(this)">7</div>
+            <div class="circle" onclick="hideCircle(this)">8</div>
+            <div class="circle" onclick="hideCircle(this)">9</div>
+            <div class="circle" onclick="hideCircle(this)">10</div>
+            <button onclick="resetCircles()">Восстановить круги</button>
+        </main>
+        <footer ondblclick="showWelcomeMessage()">
+            &copy;Виктория Журавлева, ФБИ-34, 2 курс, 2025
+        </footer>
+        <script>
+            function hideCircle(circle) {
+                circle.classList.add('hidden');
+            }
+
+            function resetCircles() {
+                let circles = document.querySelectorAll('.circle');
+                circles.forEach(function(circle) {
+                    circle.classList.remove('hidden');
+                });
+            }
+        </script>
+    </body>
+</html>
