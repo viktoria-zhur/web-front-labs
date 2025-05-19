@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Корзина товаров</title>
+        <link rel="stylesheet" href="../=main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
+        <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                background-color: #e6f7ff;
+                padding: 20px;
+            }
+
+            h1 {
+                color: #1500fd;
+                background-color: #f5f9fa;
+                padding: 10px;
+            }
+
+            .cart-item {
+                margin: 10px;
+                padding: 10px;
+                background-color: #f5f9fa;
+                border-radius: 5px;
+            }
+
+            input {
+                width: 200px;
+                padding: 5px;
+                margin: 5px;
+            }
+
+            button {
+                margin: 10px;
+                padding: 10px 20px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #45a049;
+            }
+
+            #total {
+                margin-top: 20px;
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+            footer {
+                background-color: navy;
+    color: antiquewhite;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    height: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Корзина товаров</h1>
+        </header>
+        <main>
+            <div class="cart-item">
+                <label>Яблоки (100р/шт):</label>
+                <input type="number" id="apples" min="0" placeholder="Сколько яблок для пирога?">
+            </div>
+            <div class="cart-item">
+                <label>Груши (80р/шт):</label>
+                <input type="number" id="pears" min="0" placeholder="Груши для компота?">
+            </div>
+            <div class="cart-item">
+                <label>Апельсины (150р/шт):</label>
+                <input type="number" id="oranges" min="0" placeholder="Апельсины для сока?">
+            </div>
+            <div class="cart-item">
+                <label>Дыни (300р/шт):</label>
+                <input type="number" id="melons" min="0" placeholder="Дыни для десерта?">
+            </div>
+            <div class="cart-item">
+                <label>Бананы (120р/шт):</label>
+                <input type="number" id="bananas" min="0" placeholder="Бананы для смузи?">
+            </div>
+            <button onclick="calculateTotal()">Рассчитать</button>
+            <button onclick="clearCart()">Очистить</button>
+            <div id="total">Общая цена: 0 р</div>
+        </main>
+        <footer>
+            <p>&copy; 2025 Корзина товаров. Все права защищены.</p>
+        </footer>
+        <script>
+            function calculateTotal() {
+                let apples = parseInt(document.getElementById('apples').value) || 0;
+                let pears = parseInt(document.getElementById('pears').value) || 0;
+                let oranges = parseInt(document.getElementById('oranges').value) || 0;
+                let melons = parseInt(document.getElementById('melons').value) || 0;
+                let bananas = parseInt(document.getElementById('bananas').value) || 0;
+
+                let total = apples * 100 + pears * 80 + oranges * 150 + melons * 300 + bananas * 120;
+                document.getElementById('total').textContent = "Общая цена: " + total + " р";
+            }
+
+            function clearCart() {
+                document.getElementById('apples').value = "";
+                document.getElementById('pears').value = "";
+                document.getElementById('oranges').value = "";
+                document.getElementById('melons').value = "";
+                document.getElementById('bananas').value = "";
+                document.getElementById('total').textContent = "Общая цена: 0 р";
+            }
+        </script>
+    </body>
+    <footer>
+        &copy; Виктория Журавлева, ФБИ-34, 2 курс, 2025
+    </footer>
+</html>
