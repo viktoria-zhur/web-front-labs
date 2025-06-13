@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Журавлева Виктория Александровна. Лабораторная работа 6</title>
+         <link rel="stylesheet" href="../=main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
+        <script>
+            function showDiagram() {
+                let data = [36, 86, 55, 28, 92, 60, 41, 17, 9, 43];
+                let color = ['Salmon', 'Pink', 'GreenYellow', 'Aqua', 'Orange', 'Violet', 'Bisque', 'DeepPink', 'MediumSpringGreen', 'DodgerBlue'];
+                let bars = document. getElementsByClassName('bar');
+                const diagHeight = document.getElementById('diag').clientHeight;
+                const maxData = Math.max(...data);
+                const k = diagHeight/maxData*0.9;
+                for(let i = 0; i < data.length; i++) {
+                    bars[i].style.height = k*data[i] + 'px';
+                    bars[i].style.backgroundColor = color[i];
+                    bars[i].textContent = data[i];
+                }
+            }
+        </script>
+        <style>
+            #diag {
+                border: 2px solid SaddleBrown;
+                width: 700px;
+                height: 700px;
+                margin: 15px;
+                background-color: white;
+                display: flex; 
+                align-items: flex-end; 
+
+            }
+            .bar {
+                border: 1px solid SaddleBrown;
+                width: 64px;
+                margin: 2px;
+                margin-bottom: 5px;
+                flex-direction: column; 
+                justify-content: flex-start; 
+                text-align: center;
+                color: black;
+            }
+        </style>
+        
+    </head>
+        <body onload = "showDiagram()">
+            <header>
+                НГТУ. ФБ, Лабораторная работа 6
+            </header>
+
+            <main>
+                <div id="diag">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </main>
+
+            <footer>
+                &copy; Журавлева Виктория, ФБИ-34, 2 курс, 2025
+            </footer>
+        </body>
+</html>
