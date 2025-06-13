@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Журавлева Виктория Александровна. Лабораторная работа 6</title>
+        <link rel="stylesheet" href="../=main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
+        <script src="books.js"></script>
+        <script>
+            function showBooks() {
+                const booklist = document.getElementById('booklist');
+                for(let i = 0; i < books.length; i++) {
+                    let bookStyle = `<div style="margin: 5px; font-size: 20px;`;
+                    bookStyle += `">
+                        ${ books[i].num }. 
+                        <b>${ books[i].author }.</b>
+                        <i>${ books[i].name }</i>
+                        &mdash; ${ books[i].publicationYear }.<br>
+                        <b>Цена: ${ books[i].price} ₽</b><br>`;
+                    if (books[i].bestseller) {
+                        bookStyle += `<div style="margin: 5px;"><span title="Не пропустите!" style="background-color: LimeGreen; border-radius: 5px; padding: 3px; color: White;">Бестселлер!<br></span></div>`;
+                    }
+                    if (!books[i].inStock) {
+                        bookStyle += `<div style="margin: 5px;"><span style="background-color: FireBrick; border-radius: 5px; padding: 3px; color: White;">Нет в наличии</span></div>`;
+                    }
+                    bookStyle += `</div>`
+                    booklist.innerHTML += bookStyle;
+                }
+            }
+        </script>
+    </head>
+        <body onload="showBooks()">
+            <header>
+                НГТУ. ФБ, Лабораторная работа 6
+            </header>
+
+            <main>
+                <h1>Список книг</h1>
+                <div id="booklist"></div>
+            </main>
+
+            <footer>
+                &copy; Журавлева Виктория, ФБИ-34, 2 курс, 2025
+            </footer>
+        </body>
+</html>

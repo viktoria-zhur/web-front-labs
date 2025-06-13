@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Журавлева Виктория Александровна. Лабораторная работа 6</title>
+        <link rel="stylesheet" href="../=main.css">
+      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
+        <script>
+            function showDate() {
+                let out1 = document.getElementById('current-date1');
+                let today = new Date();
+                out1.innerHTML = today.toLocaleString('ru-RU');
+                let out2 = document.getElementById('current-date2');
+                out2.innerHTML = today.toLocaleString('ar-EG');
+                let out3 = document.getElementById('current-date3');
+                out3.innerHTML = today.toLocaleString('cs-CZ');
+                let out4 = document.getElementById('current-date4');
+                out4.innerHTML = today.toLocaleString('es-CR');
+                let out5 = document.getElementById('current-date5');
+                out5.innerHTML = today.toLocaleString('zh-HK');
+            }
+            let timerDate;
+            function startShowDate() {
+                showDate();
+                timerDate = setInterval(showDate, 1000);
+                document.getElementById('start-date-btn').disabled = true;
+                document.getElementById('stop-date-btn').disabled = false;
+            }
+            function stopShowDate() {
+                clearInterval(timerDate);
+                document.getElementById('start-date-btn').disabled = false;
+                document.getElementById('stop-date-btn').disabled = true;
+            }
+            function ChangeColors() {
+                const header = document.getElementsByTagName('header')[0];
+                const rgb = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+                header.style.color = rgb;
+            }
+            let timerNum;
+            function startChangeColors() {
+                ChangeColors();
+                timerNum = setInterval(ChangeColors, 500);
+                document.getElementById('start-btn').disabled = true;
+                document.getElementById('stop-btn').disabled = false;
+            }
+            function stopChangeColors() {
+                clearInterval(timerNum);
+                document.getElementById('start-btn').disabled = false;
+                document.getElementById('stop-btn').disabled = true;
+            }
+        </script>
+        <style>
+            .text {
+                font-size: 20px;
+            }
+            div {
+                margin: 5px;
+            }
+            header {
+                transition: 1s;
+            }
+        </style>
+    </head>
+        <body onload=" showDate()">
+            <header>
+                НГТУ. ФБ, Лабораторная работа 6
+            </header>
+
+            <main>
+                <div class="text">Дата и время для русской локали: </div>
+                <div id="current-date1"></div>
+                <div class="text">Дата и время для локали Египта: </div>
+                <div id="current-date2"></div>
+                <div class="text">Дата и время для локали Чехии: </div>
+                <div id="current-date3"></div>
+                <div class="text">Дата и время для локали Коста-Рики: </div>
+                <div id="current-date4"></div>
+                <div class="text">Дата и время для китайской локали: </div>
+                <div id="current-date5"></div>
+                <div>
+                    <button onclick="startShowDate()" id="start-date-btn">Обновлять время</button>
+                    <button onclick="stopShowDate()" disabled id="stop-date-btn">Остановить обновление времени</button>
+                </div>
+                <div>
+                    <button onclick="startChangeColors()" id="start-btn">Старт</button>
+                    <button onclick="stopChangeColors()" disabled id="stop-btn">Стоп</button>
+                </div>
+            </main>
+
+            <footer>
+                &copy; Журавлева Виктория, ФБИ-34, 2 курс, 2025
+            </footer>
+        </body>
+</html>
