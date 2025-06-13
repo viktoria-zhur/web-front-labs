@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Журавлева Виктория Александровна. Лабораторная работа 8</title>
+         <link rel="stylesheet" href="../=main.css">
+      <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+       <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+        <body>
+            <header>
+                НГТУ. ФБ, Лабораторная работа 8
+            </header>
+
+            <main>
+                <div id="app">
+                    <h1 :title="messageRus">{{message}}</h1>
+                    <p>Счёстчик: {{counter}}</p>
+                    <button @click="incCounter" v-if="counter < 10" class="btn btn-success"><i class="bi bi-plus-circle"></i></button>
+                    <button @click="decCounter" v-if="counter > 0" class="btn btn-danger"><i class="bi bi-dash-circle"></i></button>
+                    <hr>
+
+                    <h2>Пользователь:</h2>
+                    <div>Имя: {{user.name}}</div>
+                    <div>Возраст: {{user.age}}</div>
+                    <div>Телефон: {{user.tel}}</div>
+                    <hr>
+
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h2 class="card-title">Цветы:</h2>
+                            <ul class="list-group list-group-flush mb-3">
+                                <li v-for="(flower, id) in flowers" :key="id" class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{flower}} 
+                                    <div>
+                                        <button @click="edit(id, flower)" class="btn btn-outline-secondary btn-sm me-2"><i class="bi bi-pencil"></i></button>
+                                        <button @click="removeFlower(id)" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                            <button @click="addFlower" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Добавить новый цветок</button>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <h2>Цветы:</h2>
+                    <table class="table table-info table-striped">
+                        <thead>
+                            <tr>
+                                <th>Название</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(flower, id) in flowers">
+                                <td>
+                                    <span v-if="flower === null">Загружается...</span>
+                                    <span v-else>{{flower}}</span>
+                                </td>
+                                <td>
+                                    <button @click="edit(id, flower)" class="btn btn-primary btn-sm me-2" v-if="flower !== null">
+                                        <i class="bi bi-pencil-square"></i> Редактировать
+                                    </button>
+                                    <button @click="removeFlower(id)" class="btn btn-danger btn-sm" v-if="flower !== null">
+                                        <i class="bi bi-trash"></i> Удалить
+                                    </button>
+                                    <div class="spinner-border text-primary" role="status" v-if="flower === null">
+                                        <span class="visually-hidden">Загрузка...</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button @click="addFlower" class="btn btn-success mt-3">
+                        <i class="bi bi-plus-circle"></i> Добавить новый цветок
+                    </button>
+                    <hr>
+
+                    <h2>Калькулятор</h2>
+                    <div class="row g-5">
+                        <div class="col-auto">
+                            <input type="number" v-model="a" class="form-control">
+                        </div>
+                        <div class="col-auto">
+                            +
+                        </div>
+                        <div class="col-auto">
+                            <input type="number" v-model="b" class="form-control">
+                        </div>
+                        <div class="col-auto">
+                            <button @click="sum" class="btn btn-primary"><i class="bi bi-calculator"></i></button>
+                        </div>
+                        <div class="col-auto">
+                            <span class="badge text-bg-secondary fs-5">{{result}}</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <footer>
+                &copy; Журавлева Виктория, ФБИ-34, 2 курс, 2025
+            </footer>
+
+            <script>
+                Vue.createApp ({
+                    data() {
+                        return {
+                            message: 'Hello!',
+                            messageRus: 'Привет!',
+                            counter: 1,
+                            user: {
+                                name: 'Маша',
+                                age: '18',
+                                tel: '222-33-44'
+                            },
+                            flowers: ['Роза', 'Тюльпан', 'Маргаритка', 'Георгин', 'Одуванчик'],
+                            a: 1,
+                            b: 10,
+                            result: '',
+                        }
+                    },
+                    methods: {
+                        incCounter() {
+                            this.counter++;
+                        },
+                        decCounter() {
+                            this.counter--;
+                        },
+                        edit(id, flower) {
+                            let newName = prompt('Введите новое название цветка:', flower);
+                            if (newName !== null && newName.trim() !== '') {
+                                this.flowers[id] = null;
+                                setTimeout(() => {
+                                    this.flowers[id] = newName;
+                                }, 1500);
+                            }
+                        },
+                        removeFlower(id) {
+                            if (confirm('Вы уверены, что хотите удалить этот цветок?')) {
+                                this.flowers.splice(id, 1);
+                            }
+                        },
+                        addFlower() {
+                            let newFlowerName = prompt('Введите название нового цветка:');
+                            if (newFlowerName !== null && newFlowerName.trim() !== '') {
+                                this.flowers.push(newFlowerName.trim());
+                            }
+                        },
+                        sum() {
+                            this.result = this.a + this.b;
+                        },
+                    }
+                }).mount('#app')
+            </script>
+        </body>
+</html>
