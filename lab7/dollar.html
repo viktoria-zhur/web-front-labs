@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Журавлева Виктория Александровна. Лабораторная работа 7</title>
+        <link rel="stylesheet" href="../=main.css">
+      <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+       <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
+        <script src="dollar-data.js"></script>
+        <script>
+            function showExchange() {
+                // const exchange = [
+                //     52.2861, 53.0719, 52.2463, 52.4304, 52.0840, 51.6245, 51.9208, 51.6094, 51.9829
+                // ];
+                let table = document.getElementById('dollar-table');
+                for (let i = 0; i < exchange.length; i++) {
+                    let tr = document.createElement('tr');
+                    let td = document.createElement('td');
+                    td.innerText = exchange[i];
+                    tr.appendChild(td);
+                    table.appendChild(tr);
+                }
+                let sum = 0;
+                for(let i = 0; i < exchange.length; i++) {
+                    sum += exchange[i];
+                }
+                let average = sum / exchange.length;
+                average = average.toFixed(2);
+                let x = document.getElementById('detail');
+                x.innerText = `Среднее значение ${average}`;
+                let y = document.querySelector('button');
+                y.style.display = 'none';
+            }
+        </script>
+    </head>
+        <body>
+            <header>
+                НГТУ. ФБ, Лабораторная работа 7
+            </header>
+
+            <main>
+                <button onclick="showExchange()">Курс доллара</button>
+                <table border="1" id="dollar-table"></table>
+                <div id="detail"></div>
+            </main>
+
+            <footer>
+                &copy; Журавлева Виктория, ФБИ-34, 2 курс, 2025
+            </footer>
+        </body>
+</html>
