@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Журавлева Виктория Александровна. Лабораторная работа 6</title>
+        <link rel="stylesheet" href="../=main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
+        <script>
+            const days = 30;
+            const minTemps = [];
+            const maxTemps = [];
+            function generateChart() {
+                const chart = document.getElementById('chart');
+                for (let i = 0; i < days; i++) {
+                    const min = Math.floor(Math.random() * 10) + 5;
+                    const max = Math.floor(Math.random() * 15) + min + 1;
+                    minTemps.push(min);
+                    maxTemps.push(max);
+                    const barContainer = document.createElement('div');
+                    barContainer.className = 'bar-container';
+                    barContainer.id = 'day-' + (i + 1);
+                    const maxBar = document.createElement('div');
+                    maxBar.className = 'max';
+                    maxBar.textContent = `${max}°C`;
+                    maxBar.style.height = (max - min) * 10 + 'px';
+                    const minBar = document.createElement('div');
+                    minBar.className = 'min';
+                    minBar.textContent = `${min}°C`;
+                    minBar.style.height = min * 10 + 'px';
+                    barContainer.appendChild(maxBar);
+                    barContainer.appendChild(minBar);
+                    chart.appendChild(barContainer);
+                }
+            }
+            function highlightDay() {
+                const day = parseInt(document.getElementById('dayInput').value);
+                const output = document.getElementById('output');
+                for (let i = 1; i <= days; i++) {
+                    document.getElementById('day-' + i).classList.remove('highlight');
+                }
+                if (day >= 1 && day <= days) {
+                    document.getElementById('day-' + day).classList.add('highlight');
+                    output.textContent = `Минимальная температура: ${minTemps[day - 1]}°C, Максимальная температура: ${maxTemps[day - 1]}°C`;
+                } else {
+                    output.textContent = 'Введите корректный номер дня (1–30).';
+                }
+            }
+        </script>
+        <style>
+            #chart {
+                display: flex;
+                align-items: flex-end;
+                height: 400px;
+                width: 900px;
+                border: 1px solid DarkBlue;
+                background-color: azure;
+                margin-bottom: 10px;
+            }
+            .bar-container {
+                margin: 5px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: relative;
+                color: black;
+                font-size: 10px;
+            }
+            .min {
+                background-color: DodgerBlue;
+                width: 20px;
+            }
+            .max {
+                background-color: LightSkyBlue;
+                width: 20px;
+            }
+            .highlight .max {
+                background-color: Yellow;
+            }
+            .highlight .min {
+                background-color: orange;
+            }
+        </style>
+    </head>
+        <body onload="generateChart()">
+            <header>
+                НГТУ. ФБ, Лабораторная работа 6
+            </header>
+            <main>
+                <h1>Диаграмма температур за месяц</h1>
+                <div id="chart"></div>
+                <label for="dayInput">Номер дня: </label>
+                <input type="number" id="dayInput" min="1" max="30">
+                <button onclick="highlightDay()">Найти</button>
+                <div id="output"></div>
+            </main>
+            <footer>
+                &copy; Журавлева Виктория, ФБИ-34, 2 курс, 2025
+            </footer>
+        </body>
+</html>
