@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Журавлева Виктория Александровна. Лабораторная работа 7</title>
+         <link rel="stylesheet" href="../=main.css">
+      <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+       <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
+        <script>
+            function loadWeather() {
+            const url = 'https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m,relative_humidity_2m&timezone=Asia%2FBangkok&past_days=1&forecast_days=1';
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                const times = data.hourly.time;
+                const temps = data.hourly.temperature_2m;
+                const humidity = data.hourly.relative_humidity_2m;
+                drawChart('tempChart', temps, times, ' °C');
+                drawChart('humidityChart', humidity, times, '%');
+                showCurrent(data.hourly, data.timezone);
+                });
+            }
+
+            function drawChart(containerId, values, times, unit) {
+                const chart = document.getElementById(containerId);
+                chart.innerHTML = '';
+                const min = Math.min(...values);
+                const max = Math.max(...values);
+                const range = max - min || 1;
+                values.forEach((val, i) => {
+                    const container = document.createElement('div');
+                    container.className = 'bar-container';
+                    const valText = document.createElement('div');
+                    valText.className = 'value';
+                    valText.textContent = val.toFixed(1) + unit;
+                    container.appendChild(valText);
+                    const bar = document.createElement('div');
+                    bar.className = 'bar ' + (i < 24 ? 'past' : 'future');
+                    bar.style.height = ((val - min) / range * 200 + 10) + 'px';
+                    container.appendChild(bar);
+                    const label = document.createElement('div');
+                    label.className = 'label';
+                    const dt = new Date(times[i]);
+                    label.textContent = dt.getDate().toString().padStart(2, '0') + '.' + (dt.getMonth()+1).toString().padStart(2, '0') + '\n' + dt.getHours().toString().padStart(2, '0') + ':00';
+                    container.appendChild(label);
+                    chart.appendChild(container);
+                });
+            }
+
+            function showCurrent(hourly, timezone) {
+                const now = new Date().toLocaleString('en-US', { timeZone: timezone });
+                const nowDate = new Date(now);
+                const hour = nowDate.getHours();
+                const index = hourly.time.findIndex(t => {
+                    const dt = new Date(t);
+                    return dt.getHours() === hour && dt.getDate() === nowDate.getDate();
+                });
+                if (index !== -1) {
+                    document.getElementById('time').textContent = 'Время: ' + nowDate.toLocaleString('ru-RU');
+                    document.getElementById('temp').textContent = 'Температура: ' + hourly.temperature_2m[index].toFixed(1) + '°C';
+                    document.getElementById('humidity').textContent = 'Влажность: ' + hourly.relative_humidity_2m[index].toFixed(0) + '%';
+                } else {
+                    document.getElementById('time').textContent = 'Время: данные не найдены';
+                }
+            }
+        </script>    
+        <style>
+            .chart { 
+                display: flex; 
+                align-items: end; 
+                height: 300px; 
+                border: 1px solid #ccc; 
+                padding: 10px;
+                background: #f0f0f0; 
+            }
+            .bar-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-right: 1px;
+            }
+            .bar {
+                width: 20px;
+                border-radius: 3px;
+            }
+            .bar.past {
+                background-color: #90caf9;
+            }
+            .bar.future {
+                background-color: #42a5f5;
+            }
+            .bar:hover {
+            opacity: 0.8;
+            }
+            .value {
+                font-size: 0.7em;
+                background: #fff;
+                border-radius: 3px;
+                margin-bottom: 3px;
+                padding: 1px 1px;
+            }
+            .label {
+                font-size: 0.6em;
+                margin-top: 4px;
+                text-align: center;
+            }
+            #current { 
+                padding: 10px;  
+            }
+        </style>
+    </head>
+        <body>
+            <header>
+                НГТУ. ФБ, Лабораторная работа 7
+            </header>
+
+            <main>
+                <h2>Гистограммы температуры и влажности</h2>
+                <button onclick="loadWeather()">Загрузить данные</button>
+                <div>
+                    <h3>Температура (°C)</h3>
+                    <div id="tempChart" class="chart"></div>
+                </div>
+                <div>
+                    <h3>Влажность (%)</h3>
+                    <div id="humidityChart" class="chart"></div>
+                </div>
+                <div id="current">
+                    <h3>Текущие значения</h3>
+                    <p id="time">Дата и время: -</p>
+                    <p id="temp">Температура: -</p>
+                    <p id="humidity">Влажность: -</p>
+                </div>
+            </main>
+        
+            <footer>
+                &copy; Журавлева Виктория, ФБИ-34, 2 курс, 2025
+            </footer>
+
+        </body>
+</html>
