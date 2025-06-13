@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Журавлева Виктория Александровна. Лабораторная работа 7</title>
+            <link rel="stylesheet" href="../=main.css">
+      <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+       <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
+        <script src="quotes.js"></script>
+        <script>
+            function showExchange() {
+                const main = document.querySelector('main');
+                const table = document.createElement('table');
+                table.border = 1;
+                const thead = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+                const headers = ['Дата', 'Цена акций, руб', 'Разница'];
+                headers.forEach(headerText => {
+                    const th = document.createElement('th');
+                    th.innerText = headerText;
+                    headerRow.appendChild(th);
+                });
+                thead.appendChild(headerRow);
+                table.appendChild(thead);
+                const tbody = document.createElement('tbody');
+                for (let i = 0; i < prices.length; i++) {
+                    const tr = document.createElement('tr');
+                    const dateTd = document.createElement('td');
+                    dateTd.innerText = data[i];
+                    tr.appendChild(dateTd);
+                    const priceTd = document.createElement('td');
+                    priceTd.innerText = prices[i];
+                    tr.appendChild(priceTd);
+                    const diffTd = document.createElement('td');
+                    if (i > 0) {
+                        const difference = (prices[i] - prices[i - 1]).toFixed(4);
+                        diffTd.innerText = difference;
+                        if (difference > 0) {
+                            diffTd.style.color = 'green';
+                        } else if (difference < 0) {
+                            diffTd.style.color = 'red';
+                        }
+                    } 
+                    else {
+                        diffTd.innerText = '-';
+                    }
+                    tr.appendChild(diffTd);
+
+                    tbody.appendChild(tr);
+                }
+                table.appendChild(tbody);
+                main.appendChild(table);
+                const sum = prices.reduce((acc, price) => acc + price, 0);
+                const average = (sum / prices.length).toFixed(4);
+                const maxPrice = Math.max(...prices);
+                const minPrice = Math.min(...prices);
+                const detailDiv = document.createElement('div');
+                detailDiv.innerHTML = `<p>Среднее значение: ${average} руб</p><p>Максимальное значение: ${maxPrice} руб</p><p>Минимальное значение: ${minPrice} руб</p>`;
+                main.appendChild(detailDiv);
+            }
+        </script>
+    </head>
+        <body>
+            <header>
+                НГТУ. ФБ, Лабораторная работа 7
+            </header>
+
+            <main>
+                <button onclick="showExchange()">Курс акции ФСК - Россети</button>
+            </main>
+
+            <footer>
+                &copy; Журавлева Виктория, ФБИ-34, 2 курс, 2025
+            </footer>
+        </body>
+</html>
