@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Журавлева Виктория Александровна. Лабораторная работа 7</title>
+         <link rel="stylesheet" href="../=main.css">
+      <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+       <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
+        <script>
+            function getWeather() {
+                const latitude = 55.0415;
+                const longitude = 82.9346;
+                const today = new Date().toISOString().split('T')[0]; 
+                const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&timezone=auto&start_date=${today}&end_date=${today}`;
+                const weatherResultDiv = document.getElementById('weatherResult');
+                weatherResultDiv.innerHTML = '<p class="loading-message">Загрузка данных о погоде...</p>';
+                weatherResultDiv.className = 'weather-info';
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Сетевой ответ не был успешным: ${response.status} ${response.statusText}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        weatherResultDiv.innerHTML = '';
+
+                        if (data.hourly && data.hourly.time && data.hourly.temperature_2m) {
+                            const times = data.hourly.time;
+                            const temperatures = data.hourly.temperature_2m;
+                            const displayDate = new Date(today).toLocaleDateString('ru-RU', {
+                                day: 'numeric', month: 'long', year: 'numeric'
+                            });
+                            let weatherOutput = `<h2>Прогноз погоды на ${displayDate}</h2>`;
+                            const targetHoursMap = {
+                                "08:00": "Утро (8:00)",
+                                "12:00": "День (12:00)",
+                                "20:00": "Вечер (20:00)"
+                            };
+                            let foundAnyDataSpecificTime = false;
+                            for (const targetHour in targetHoursMap) {
+                                const targetDateTime = `${today}T${targetHour}`;
+                                const index = times.indexOf(targetDateTime);
+                                if (index !== -1) {
+                                    const temp = temperatures[index];
+                                    weatherOutput += `<p>${targetHoursMap[targetHour]}: <strong>${temp}°C</strong></p>`;
+                                    foundAnyDataSpecificTime = true;
+                                } 
+                                else {
+                                    weatherOutput += `<p>Данные для ${targetHoursMap[targetHour]} на сегодня не найдены.</p>`;
+                                }
+                            }
+                            if (!foundAnyDataSpecificTime && times.length > 0) {
+                                weatherOutput += '<p>Не удалось найти данные для указанных часов, хотя другие почасовые данные доступны.</p>';
+                            } 
+                            else if (times.length === 0) {
+                                weatherOutput += '<p class="error-message">Для указанной даты нет почасовых данных.</p>';
+                            }
+                            weatherResultDiv.innerHTML = weatherOutput;
+                        } 
+                        else {
+                            weatherResultDiv.innerHTML = '<p class="error-message">Не удалось получить структурированные данные о погоде.</p>';
+                            console.error("Неожиданная или неполная структура ответа API:", data);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Ошибка при получении данных о погоде:', error);
+                        weatherResultDiv.innerHTML = `<p class="error-message">Произошла ошибка при загрузке данных: ${error.message}.</p>`;
+                    });
+            }
+        </script>
+        <style>
+            main {
+                padding: 20px;
+                max-width: 800px;
+                margin: 20px auto;
+                background-color: white;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            }
+            button {
+                display: block;
+                margin: 0 auto 20px auto;
+                padding: 10px 20px;
+                font-size: 1em;
+                color: white;
+                background-color: #007bff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            button:hover {
+                background-color: #0056b3;
+            }
+            .weather-info {
+                margin-top: 20px;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background-color: #f9f9f9;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            }
+            .weather-info h2 {
+                margin-top: 0;
+                color: #007bff;
+                border-bottom: 2px solid #eee;
+                padding-bottom: 10px;
+                margin-bottom: 15px;
+            }
+            .weather-info p {
+                margin: 10px 0;
+                font-size: 1.1em;
+                color: #555;
+            }
+            .weather-info p.error-message {
+                color: #d9534f;
+                font-weight: bold;
+            }
+            .weather-info p.loading-message {
+                color: #5bc0de; 
+                font-style: italic;
+            }
+        </style>
+    </head>
+        <body>
+            <header>
+                НГТУ. ФБ, Лабораторная работа 7
+            </header>
+
+            <main>
+                <button onclick="getWeather()">Получить прогноз погоды на сегодня</button>
+                <div id="weatherResult"><p>Нажмите кнопку выше, чтобы загрузить прогноз погоды.</p></div>
+            </main>
+
+            <footer>
+                &copy; Журавлева Виктория, ФБИ-34, 2 курс, 2025
+            </footer>
+        </body>
+</html>
