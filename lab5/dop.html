@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Журавлева Виктория Александровна. Лабораторная работа 5</title>
+        <link rel="stylesheet" href="../=main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
+        <script>
+            function applyFilter(event) {
+                const imgContainer = document.getElementById('image-container');
+                const img = document.getElementById('filterable-image');
+                const filterInfo = document.getElementById('filter-info');
+                const containerWidth = imgContainer.offsetWidth;
+                const mouseX = event.clientX - imgContainer.getBoundingClientRect().left;
+                const normalizedPosition = mouseX / containerWidth;
+                let filterValue = 0;
+                let filterName = '';
+
+                if (event.ctrlKey) {
+                    filterValue = 'grayscale(' + normalizedPosition + ')';
+                    filterName = 'grayscale';
+                } 
+                else if (event.altKey) {
+                    filterValue = 'hue-rotate(' + normalizedPosition * 360 + 'deg)';
+                    filterName = 'hue-rotate';
+                } 
+                else if (event.shiftKey) {
+                    filterValue = 'invert(' + normalizedPosition + ')';
+                    filterName = 'invert';
+                } 
+                else {
+                    filterValue = 'blur(' + normalizedPosition * 10 + 'px)';
+                    filterName = 'blur';
+                }
+
+                img.style.filter = filterValue;
+                filterInfo.textContent = 'Фильтр:' + filterValue;
+            }
+        </script>
+        <style>
+            main {
+                font-family: sans-serif;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #image-container {
+                position: relative;
+                width: 500px; 
+                height: auto;
+                margin-bottom: 20px;
+            }
+
+            #filterable-image {
+                display: block;
+                width: 100%;
+                height: auto;
+                filter: blur(0px); 
+            }
+
+            #filter-info {
+                font-size: 16px;
+                color: DimGray;
+            }
+
+            #help {
+                margin-top: 20px;
+                padding: 15px;
+                border: 1px solid Silver;
+                background-color: White;
+                border-radius: 5px;
+                text-align: left;
+            }
+            h1 {
+                font-size: 30px;
+            }
+        </style>
+    </head>
+        <body>
+            <header>
+                НГТУ. ФБ, Лабораторная работа 5
+            </header>
+
+            <main>
+                <div id="image-container" onmousemove="applyFilter(event)">
+                    <img id="filterable-image" src="душнила.JPG">
+                </div>
+                <div id="filter-info">Фильтр: blur(0)</div>
+        
+                <div id="help">
+                    <h1>Инструкция:</h1>
+                    <p>Наведите курсор мыши на изображение, чтобы применить эффект размытия (blur). Эффект усиливается при движении курсора вправо.</p>
+                    <ul>
+                        <li>При нажатой клавише <b>Ctrl</b> применяется фильтр <b>grayscale</b> (оттенки серого).</li>
+                        <li>При нажатой клавише <b>Alt</b> применяется фильтр <b>hue-rotate</b> (сдвиг цветового тона).</li>
+                        <li>При нажатой клавише <b>Shift</b> применяется фильтр <b>invert</b> (инверсия).</li>
+                    </ul>
+                    <p>Степень выраженности фильтра отображается под изображением.</p>
+                </div>
+            </main>
+
+            <footer>
+                &copy; Журавлева Виктория, ФБИ-34, 2 курс, 2025
+            </footer>
+        </body>
+</html>

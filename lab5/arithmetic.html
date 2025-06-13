@@ -9,14 +9,58 @@
         <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
         <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
         <script>
-            function changeOutput(buttonNumber, bgColor, textColor, borderStyle, borderRadius, borderWidth) {
-                let output = document.getElementById('output');
-                output.innerHTML = "Нажата кнопка " + buttonNumber;
-                output.style.backgroundColor = bgColor;
-                output.style.color = textColor;
-                output.style.borderStyle = borderStyle;
-                output.style.borderRadius = borderRadius;
-                output.style.borderWidth = borderWidth;
+            function showSum() {
+                let number1 = parseFloat(document.getElementById('number1').value);
+                let number2 = parseFloat(document.getElementById('number2').value);
+                let sum = number1 + number2;
+                alert("Сумма: " + sum);
+                document.getElementById('output').innerHTML = "Нажата кнопка: Найти сумму чисел";
+            }
+
+            function showDifference() {
+                let number1 = parseFloat(document.getElementById('number1').value);
+                let number2 = parseFloat(document.getElementById('number2').value);
+                let difference = number1 - number2;
+                alert("Разность: " + difference);
+                document.getElementById('output').innerHTML = "Нажата кнопка: Найти разность чисел";
+            }
+
+            function showProduct() {
+                let number1 = parseFloat(document.getElementById('number1').value);
+                let number2 = parseFloat(document.getElementById('number2').value);
+                let product = number1 * number2;
+                alert("Произведение: " + product);
+                document.getElementById('output').innerHTML = "Нажата кнопка: Найти произведение";
+            }
+
+            function showDiv() {
+                let number1 = parseFloat(document.getElementById('number1').value);
+                let number2 = parseFloat(document.getElementById('number2').value);
+                let division = number1 / number2;
+                alert("Отношение: " + division);
+                document.getElementById('output').innerHTML = "Нажата кнопка: Найти отношение чисел";
+            }
+
+            function showPower() {
+                let number1 = parseFloat(document.getElementById('number1').value);
+                let number2 = parseFloat(document.getElementById('number2').value);
+                let power = Math.pow(number1, number2);
+                alert("Степень: " + power);
+                document.getElementById('output').innerHTML = "Нажата кнопка: Возвести в степень";
+            }
+
+            function showAuthor() {
+                alert("Автор: Журавлева Виктория");
+                document.getElementById('output').innerHTML = "Нажата кнопка: Узнать, кто автор страницы";
+            }
+
+            function showWelcomeMessage() {
+                alert("Добро пожаловать!");
+                document.getElementById('output').innerHTML = "Нажата кнопка: Приветственное сообщение";
+            }
+
+            function changeOutput(buttonNumber) {
+                document.getElementById('output').innerHTML = "Нажата кнопка " + buttonNumber;
             }
         </script>
         <style>
@@ -60,7 +104,7 @@
             }
 
             #output {
-                width: 200px;
+                width: 400px;
                 height: 100px;
                 background-color: #f5f9fa;
                 border: 2px solid #00008B;
@@ -71,6 +115,7 @@
                 font-weight: bold;
                 font-size: 18px;
                 border-radius: 10px;
+                overflow: auto;
             }
         </style>
     </head>
@@ -93,15 +138,15 @@
             <button class="message" style="background-color: #9370DB;" onclick="showPower()">Возвести в степень</button>
             <button class="message" style="background-color: #00BFFF;" onclick="showAuthor()">Узнать, кто автор страницы</button>
             <div>
-                <button onclick="changeOutput(1, 'yellow', 'red', 'solid', '10px', '5px')">Кнопка 1</button>
-                <button onclick="changeOutput(2, 'green', 'white', 'dashed', '20px', '10px')">Кнопка 2</button>
-                <button onclick="changeOutput(3, 'blue', 'yellow', 'dotted', '30px', '15px')">Кнопка 3</button>
-                <button onclick="changeOutput(4, 'purple', 'white', 'double', '40px', '20px')">Кнопка 4</button>
+                <button onclick="changeOutput(1)">Кнопка 1</button>
+                <button onclick="changeOutput(2)">Кнопка 2</button>
+                <button onclick="changeOutput(3)">Кнопка 3</button>
+                <button onclick="changeOutput(4)">Кнопка 4</button>
             </div>
             <div id="output"></div>
         </main>
         <footer ondblclick="showWelcomeMessage()">
-            &copy;Виктория Журавлева, ФБИ-34, 2 курс, 2025
+            &copy; Виктория Журавлева, ФБИ-34, 2 курс, 2025
         </footer>
     </body>
 </html>

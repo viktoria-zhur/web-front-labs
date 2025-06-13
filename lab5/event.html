@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Журавлева Виктория Александровна. Лабораторная работа 5</title>
+    <link rel="stylesheet" href="../=main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-32x32.png">
+    <link rel="icon" href="c:\Users\123\OneDrive\Рабочий стол\favicon-16x16.png">
+    <script>
+    let ctrlPressed = false;
+    let altPressed = false;
+    let shiftPressed = false;
+
+    document.addEventListener('keydown', function(event) {
+        if (event.ctrlKey) ctrlPressed = true;
+        if (event.altKey) altPressed = true;
+        if (event.shiftKey) shiftPressed = true;
+    });
+
+    document.addEventListener('keyup', function(event) {
+        if (event.key === 'Control') ctrlPressed = false;
+        if (event.key === 'Alt') altPressed = false;
+        if (event.key === 'Shift') shiftPressed = false;
+    });
+
+    function showCoords(event) {
+        let x = event.x;
+        let y = event.y;
+        let div = document.getElementById('block');
+        let outputText = '<b>x</b> = ' + x + 'px<br><b>y</b> = ' + y + 'px';
+
+        div.style.backgroundColor = 'PeachPuff';
+        div.style.border = '10px ridge Chocolate';
+        div.style.color = 'Chocolate';
+
+        if (ctrlPressed) {
+            div.style.backgroundColor = 'LightBlue';
+            div.style.border = '10px solid DarkBlue';
+            div.style.color = 'DarkBlue';
+            outputText += '<br>Нажата клавиша Ctrl';
+        }
+        if (altPressed) {
+            div.style.backgroundColor = 'LightGreen';
+            div.style.border = '10px solid DarkGreen';
+            div.style.color = 'DarkGreen';
+            outputText += '<br>Нажата клавиша Alt';
+        }
+        if (shiftPressed) {
+            div.style.backgroundColor = 'LightCoral';
+            div.style.border = '10px solid DarkRed';
+            div.style.color = 'DarkRed';
+            outputText += '<br>Нажата клавиша Shift';
+        }
+        if (ctrlPressed && altPressed) {
+            outputText = '<b>x</b> = ' + x + 'px<br><b>y</b> = ' + y + 'px<br>Нажаты клавиши Ctrl и Alt';
+            div.style.backgroundColor = 'LightGray';
+            div.style.border = '10px solid DarkGray';
+            div.style.color = 'Black';
+        }
+        if (ctrlPressed && shiftPressed) {
+            outputText = '<b>x</b> = ' + x + 'px<br><b>y</b> = ' + y + 'px<br>Нажаты клавиши Ctrl и Shift';
+            div.style.backgroundColor = 'LightYellow';
+            div.style.border = '10px solid DarkGoldenRod';
+            div.style.color = 'DarkGoldenRod';
+        }
+        if (altPressed && shiftPressed) {
+            outputText = '<b>x</b> = ' + x + 'px<br><b>y</b> = ' + y + 'px<br>Нажаты клавиши Alt и Shift';
+            div.style.backgroundColor = 'LightPink';
+            div.style.border = '10px solid DarkMagenta';
+            div.style.color = 'DarkMagenta';
+        }
+        if (ctrlPressed && altPressed && shiftPressed) {
+            outputText = '<b>x</b> = ' + x + 'px<br><b>y</b> = ' + y + 'px<br>Нажаты клавиши Ctrl, Alt и Shift';
+            div.style.backgroundColor = 'White';
+            div.style.border = '20px solid Blue';
+            div.style.color = 'Blue';
+        }
+
+        div.innerHTML = outputText;
+    }
+    </script>
+    <style>
+        #block {
+            width: 400px;
+            height: 400px;
+            border: 10px ridge Chocolate;
+            background-color: PeachPuff;
+            cursor: crosshair;
+            font-size: 30px;
+            color: Chocolate;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ. ФБ, Лабораторная работа 5
+    </header>
+
+    <main>
+        <div id="block" onmousemove="showCoords(event)"></div>
+    </main>
+
+    <footer>
+        &copy; Журавлева Виктория, ФБИ-34, 2 курс, 2025
+    </footer>
+</body>
+</html>
